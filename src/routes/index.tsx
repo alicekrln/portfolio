@@ -1,3 +1,4 @@
+import { Hero } from '@/components/sections/Hero'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
@@ -5,5 +6,9 @@ export const Route = createFileRoute('/')({
 })
 
 function HomePage() {
-  return <h1 className='text-3xl font-bold p-8'>Alice Karlén</h1>
+  return (
+    <>
+    <Hero />
+    </>
+  )
 }

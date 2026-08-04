@@ -1,3 +1,43 @@
-export default function NavBar() {
-  
+import { Link } from '@tanstack/react-router'
+import { ThemeToggle } from '@/components/theme-toggle'
+import { NAV } from '../../../@/lib/data'
+
+export default function Navbar() {
+  return (
+    <header className='sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl'>
+      <div className='relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-8 sm:py-4'>
+        <Link to='/' className='z-10 flex min-w-0 items-center gap-2.5'>
+          <img src='icon_me.png' className='h-11 w-11' />
+          <span className='truncate font-display text-2xl font-light tracking-tight'>
+            Alice <span className='italic text-tangerine'>Karlén</span>
+          </span>
+        </Link>
+        <nav className='hidden items-center gap-1 md:flex md:absolute md:left-1/2 md:z-0 md:-translate-x-1/2'>
+          {NAV.map((n) =>
+            n.href.startsWith('/#') ? (
+              <a
+                key={n.href}
+                href={n.href}
+                className='rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground'
+              >
+                {n.label}
+              </a>
+            ) : (
+              <Link
+                key={n.href}
+                to={n.href}
+                activeProps={{ className: 'text-foreground bg-secondary' }}
+                className='rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground'
+              >
+                {n.label}
+              </Link>
+            ),
+          )}
+        </nav>
+        <div className='z-10 flex shrink-0 items-center gap-2'>
+          <ThemeToggle />
+        </div>
+      </div>
+    </header>
+  )
 }
