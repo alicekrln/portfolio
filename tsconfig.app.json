@@ -29,8 +29,8 @@
   "include": [
     "src",
     "src/ContactForm/stores/lib",
-    "@/components/ui/button.tsx",
-    "@/components/ui/card.tsx",
-    "@/lib/data.ts"
+    "src/components/ui/button.tsx",
+    "src/components/ui/card.tsx",
+    "src/lib/data.ts"
   ]
 }

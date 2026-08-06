@@ -1,7 +1,7 @@
 import { Bug, Loader } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { weatherIconMap } from './weatherIconMap';
-import { iconUrlByName } from './weatherIcons';
+import { weatherIconMap } from '@/api/weatherIconMap'
+import { iconUrlByName } from '@/api/weatherIcons'
 
 interface WeatherResponse {
   name: string

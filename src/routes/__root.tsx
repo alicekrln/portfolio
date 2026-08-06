@@ -1,23 +1,22 @@
-// import * as React from 'react'
 import { Outlet, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import NavBar from '@/components/layout/Navbar'
+// import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+import NavBar from '@/components/layout/NavBar'
 import Footer from '@/components/layout/Footer'
-import { PageContainer } from '@/components/layout/PageContainer'
-import { BackgroundDecor } from '@/components/sections/BackgroundDecor'
+import { BackgroundDecor } from '@/components/ui/BackgroundDecor'
 
 export const Route = createRootRoute({
-  component: () => (
+  component: RootComponent,
+})
+
+function RootComponent() {
+  return (
     <>
       <BackgroundDecor />
       <NavBar />
       <main>
-        <PageContainer>
-          <Outlet />
-        </PageContainer>
+        <Outlet />
       </main>
       <Footer />
-      <TanStackRouterDevtools />
     </>
-  ),
-})
+  )
+}

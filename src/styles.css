@@ -399,3 +399,12 @@
 .font-mono {
   font-family: var(--font-mono);
 }
+
+.Typewriter__wrapper {
+  white-space: pre-wrap;
+  font-family: monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
