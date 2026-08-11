@@ -37,6 +37,13 @@ export function ProjectCard({
         <p className='mt-5 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base'>
           {project.desc}
         </p>
+        <div className='mt-6 aspect-video overflow-hidden rounded-2xl hairline'>
+          <img
+            src={project.cover}
+            alt={`${project.title} preview`}
+            className='h-full w-full object-cover transition-transform duration-700 group-hover:scale-105'
+          />
+        </div>
         <div className='mt-6 flex flex-wrap gap-1.5'>
           {project.stack.map((s) => (
             <span

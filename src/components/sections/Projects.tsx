@@ -1,6 +1,6 @@
 import { PROJECTS } from '../../lib/data'
 import { SectionHeading } from '../ui/SectionHeading'
-import { ProjectCard } from '../project/ProjectCard'
+import { ProjectCard } from '../projects/ProjectCard'
 
 export function Projects() {
   return (

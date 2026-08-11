@@ -26,6 +26,8 @@ export function Contact() {
             <a
               href='https://www.linkedin.com/in/alicekarlen/'
               aria-label='LinkedIn'
+              target='_blank'
+              rel='noopener noreferrer'
               className='flex items-center gap-2 transition-colors hover:text-teal'
             >
               <LinkedinIcon /> LinkedIn
@@ -33,6 +35,8 @@ export function Contact() {
             <a
               href='https://github.com/alicekrln'
               aria-label='GitHub'
+              target='_blank'
+              rel='noopener noreferrer'
               className='flex items-center gap-2 transition-colors hover:text-tangerine'
             >
               <GithubIcon /> Github

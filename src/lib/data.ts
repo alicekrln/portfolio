@@ -1,12 +1,20 @@
-import { Code2, Globe, Layers3, Palette, PenTool, Wrench, type LucideIcon } from "lucide-react"
+import {
+  Code2,
+  Globe,
+  Layers3,
+  Palette,
+  PenTool,
+  Wrench,
+  type LucideIcon,
+} from 'lucide-react'
 
-export type Tone = 'tangerine' | 'magenta' | 'teal' | 'mustard' | 'lilac'
+export type Tone = 'tangerine' | 'magenta' | 'teal' | 'mustard' | 'lilac' | 'lime'
 
 export const NAV = [
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Stack', href: '#stack' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', hash: 'about' },
+  { label: 'Projects', hash: 'projects' },
+  { label: 'Stack', hash: 'stack' },
+  { label: 'Contact', hash: 'contact' },
 ]
 
 export type Skill = {
@@ -79,6 +87,7 @@ export const toneBg: Record<Tone, string> = {
   teal: 'bg-teal',
   mustard: 'bg-mustard',
   lilac: 'bg-lilac',
+  lime: 'bg-lime',
 }
 
 export const toneText: Record<Tone, string> = {
@@ -87,18 +96,33 @@ export const toneText: Record<Tone, string> = {
   teal: 'text-teal',
   mustard: 'text-mustard',
   lilac: 'text-lilac',
+  lime: 'text-lime',
 }
 
+export type ProjectLink = {
+  label: string
+  href: string
+  type: 'repo' | 'live' | 'figma'
+}
+
+export type ProjectMedia =
+  | { type: 'image'; src: string; alt: string }
+  | { type: 'video'; src: string; poster?: string }
+  | { type: 'figma-embed'; embedUrl: string; title: string }
+
 export type Project = {
- slug: string
- title: string
- tag: string
- desc: string
- stack: string[]
- tone: Tone
- year: string
- role: string
- overview: string 
+  slug: string
+  title: string
+  tag: string
+  desc: string
+  stack: string[]
+  tone: Tone
+  year: string
+  role: string
+  overview: string
+  cover: string
+  links: ProjectLink[]
+  media: ProjectMedia[]
 }
 
 export const PROJECTS: Project[] = [
@@ -107,12 +131,43 @@ export const PROJECTS: Project[] = [
     title: 'Volly',
     tag: 'Volunteer platform',
     desc: 'A platform connecting people seeking support with volunteers through accessible and community-driven interactions.',
-    stack: ['Figma', 'React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Vite', 'Docker'],
-    tone: 'teal',
+    stack: ['Figma', 'React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Docker'],
+    tone: 'lime',
     year: '2026',
     role: 'UX Designer & Frontend Developer',
     overview:
-      'Developed in a cross-functional team. The platform focuses on accessibility, intuitive user flows, and community-driven interactions through posts, messaging and video chat. My primary responsibility was designing the user experience in Figma, including wireframes, user flows, and interactive prototypes, while also contributing to the frontend implementation during the final stages of development.',
+      'Developed in a cross-functional team. The platform focuses on accessibility, intuitive user flows, and community-driven interactions through posts, messaging and video chat. My primary responsibility was designing the user experience in Figma, including wireframes, user flows, and interactive prototypes, while also contributing to the frontend implementation during the final stages of development.\n\nDemo login: dl@volly.se pw: demo123',
+    cover: '/src/components/projects/volly/cover.jpg',
+    links: [
+      {
+        label: 'Staged site',
+        href: 'https://volly-staging.cc.k3s.chas-lab.dev/',
+        type: 'live',
+      },
+      {
+        label: 'Figma prototype',
+        href: 'https://www.figma.com/design/UVVS19GS7fFJaawM5VLkZp/Volly---Chas-Challange--Copy-?node-id=0-1&t=hmAoYD1PAVT7PN3I-1',
+        type: 'figma',
+      },
+    ],
+    media: [
+      {
+        type: 'figma-embed',
+        embedUrl:
+          'https://embed.figma.com/proto/UVVS19GS7fFJaawM5VLkZp/Zero-Bugs-Hero--Copy-?node-id=389-943&p=f&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=389%3A943&embed-host=share&footer=false',
+        title: '',
+      },
+      {
+        type: 'image',
+        src: '/src/components/projects/volly/figma.jpg',
+        alt: 'Figma components',
+      },
+      {
+        type: 'image',
+        src: '/src/components/projects/volly/videocall.jpg',
+        alt: 'Videocall prototype',
+      },
+    ],
   },
   {
     slug: 'matchmatch',
@@ -129,10 +184,35 @@ export const PROJECTS: Project[] = [
       'Figma',
       'shadcn/ui',
     ],
-    tone: 'magenta',
+    tone: 'tangerine',
     year: '2026',
     role: 'Frontend Developer',
     overview:
-      'MatchMatch is a browser game where players sort words into hidden categories without knowing the categories in advance. Data is dynamically fetched from the Wikipedia API using TanStack Query, while Zustand manages the game state. Features include a hint system, dynamic gameplay, score tracking, and a customizable interface with editable category cards, personalized colors, and Grid Mode for different screen layouts.',
+      'matchmatch is a browser game where players sort words into hidden categories without knowing the categories in advance. Data is dynamically fetched from the Wikipedia API using TanStack Query, while Zustand manages the game state. Features include a hint system, dynamic gameplay, score tracking, and a customizable interface with editable category cards, personalized colors, and Grid Mode for different screen layouts.',
+    cover: '/src/components/projects/matchmatch/cover.jpg',
+    links: [
+      {
+        label: 'Play the game',
+        href: 'https://eijnewe.github.io/match-match/',
+        type: 'live',
+      },
+      {
+        label: 'View repo',
+        href: 'https://github.com/alicekrln/match-match',
+        type: 'repo',
+      },
+    ],
+    media: [
+      {
+        type: 'image',
+        src: '/src/components/projects/matchmatch/grid.jpg',
+        alt: 'Game layout',
+      },
+      {
+        type: 'image',
+        src: '/src/components/projects/matchmatch/github.jpg',
+        alt: 'Github repo',
+      },
+    ],
   },
 ]
