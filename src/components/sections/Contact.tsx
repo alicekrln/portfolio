@@ -4,13 +4,12 @@ export function Contact() {
   return (
     <section
       id='contact'
-      className='mx-auto max-w-7xl px-4 py-24 sm:px-8 sm:py-32'
+      className='section-block bg-background px-4 py-24 text-foreground sm:px-8'
     >
       <span className='mb-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground'>
         <span className='h-px w-8 bg-current' />
         04 - Say hello
       </span>
-      <div className='relative overflow-hidden rounded-[2.5rem] bg-foreground p-8 text-background sm:p-16'>
         <div className='absolute -right-20 -top-20 h-72 w-72 animate-blob bg-tangerine grain' />
         <div className='absolute -bottom-16 -left-10 h-48 w-48 animate-float rounded-full bg-magenta' />
         <div className='absolute -bottom-10 right-8  h-28 w-28 animate-float rounded-full bg-teal opacity-90' />
@@ -43,7 +42,6 @@ export function Contact() {
             </a>
           </div>
         </div>
-      </div>
     </section>
   )
 }

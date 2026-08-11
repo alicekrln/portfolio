@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section
     id='top'
-      className='relative mx-auto max-w-7xl px-4 pt-16 pb-24 sm:px-8 sm:pt-24 sm:pb-32'
+      className='section-block bg-mustard px-4 pt-16 pb-24 text-tone-ink sm:px-8 sm:pt-24 sm:pb-32'
     >
       <div className='grid gap-14 lg:grid-cols-[1.45fr_1fr] lg:items-center'>
         <div>

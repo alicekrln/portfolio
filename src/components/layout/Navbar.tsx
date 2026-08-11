@@ -1,14 +1,14 @@
 import { Link } from '@tanstack/react-router'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { NAV } from '../../lib/data'
-import iconMe from '@/assets/icon_me.png'
+import { Smiley } from '../icons'
 
 export default function NavBar() {
   return (
     <header className='sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl'>
       <div className='relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-8 sm:py-4'>
         <Link to='/' className='z-10 flex min-w-0 items-center gap-2.5'>
-          <img src={iconMe} alt='Start' className='h-11 w-11' />
+          <Smiley fillColor='var(--primary)' className='h-10' />
           <span className='truncate font-display text-2xl font-light tracking-tight'>
             Alice <span className='italic text-tangerine'>Karlén</span>
           </span>

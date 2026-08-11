@@ -1,17 +1,22 @@
-import { Outlet, createRootRoute } from '@tanstack/react-router'
-// import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+import { Outlet, createRootRoute, useRouterState } from '@tanstack/react-router'
 import NavBar from '@/components/layout/NavBar'
 import Footer from '@/components/layout/Footer'
-import { BackgroundDecor } from '@/components/ui/BackgroundDecor'
+import { useEffect } from 'react'
+import { ScrollTrigger } from '@/lib/gsap'
 
 export const Route = createRootRoute({
   component: RootComponent,
 })
 
 function RootComponent() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname })
+
+  useEffect(() => {
+    ScrollTrigger.refresh()
+  }, [pathname])
+
   return (
     <>
-      <BackgroundDecor />
       <NavBar />
       <main>
         <Outlet />
