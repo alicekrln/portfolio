@@ -12,7 +12,9 @@ function RootComponent() {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
 
   useEffect(() => {
-    ScrollTrigger.refresh()
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh()
+    })
   }, [pathname])
 
   return (

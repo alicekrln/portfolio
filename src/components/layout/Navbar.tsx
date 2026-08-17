@@ -1,35 +1,55 @@
 import { Link } from '@tanstack/react-router'
-import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { NAV } from '../../lib/data'
-import { Smiley } from '../icons'
+import { SmileyButton } from './SmileyButton'
+import { useLayoutEffect, useRef } from 'react'
+import gsap from 'gsap'
 
 export default function NavBar() {
-  return (
-    <header className='sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl'>
-      <div className='relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-8 sm:py-4'>
-        <Link to='/' className='z-10 flex min-w-0 items-center gap-2.5'>
-          <Smiley fillColor='var(--primary)' className='h-10' />
-          <span className='truncate font-display text-2xl font-light tracking-tight'>
-            Alice <span className='italic text-tangerine'>Karlén</span>
-          </span>
-        </Link>
+  const navRef = useRef<HTMLDivElement>(null)
 
-        <nav className='hidden items-center gap-1 md:absolute md:left-1/2 md:z-0 md:flex md:-translate-x-1/2'>
+  useLayoutEffect(() => {
+    if (!navRef.current) return
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.nav-reveal',
+        {
+          opacity: 0,
+          y: -30,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          stagger: 0.08,
+        }
+      )
+    }, navRef)
+
+    return () => ctx.revert()
+  }, [])
+
+  return (
+    <header className='fixed inset-x-0 top-0 z-40 flex justify-center px-2 pt-3 sm:pt-4'>
+      <div
+        ref={navRef}
+        className='flex w-full max-w-3xl items-center gap-1 rounded-full bg-foreground/95 px-2 py-2 text-background backdrop-blur-xl border-2 border-violet sm:gap-2 sm:px-3'
+      >
+        <SmileyButton />
+        <nav className='flex flex-1 items-center justify-center gap-0.5 overflow-x-auto overflow-y-hidden sm:gap-1 md:absolute md:left-1/2 md:z-0 md:flex md:-translate-x-1/2'>
           {NAV.map((n) => (
             <Link
               key={n.hash}
               to='/'
               hash={n.hash}
-              className='rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground'
+              className='nav-reveal shrink-0 rounded-full px-2.5 py-2 font-display text-[11px] font-bold uppercase tracking-wider transition-colors hover:bg-background/15 sm:px-4 sm:text-sm sm:tracking-[0.1em]'
             >
               {n.label}
             </Link>
           ))}
         </nav>
-
-        <div className='z-10 flex shrink-0 items-center gap-2'>
-          <ThemeToggle />
-        </div>
+        {/* <div className='sm:w-11 shrink-0' aria-hidden /> */}
       </div>
     </header>
   )

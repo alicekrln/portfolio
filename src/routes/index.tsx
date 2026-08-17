@@ -14,8 +14,8 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <Marquee />
       <About />
+      <Marquee />
       <Projects />
       <Stack />
       <Contact />

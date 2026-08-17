@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import gsap from '@/lib/gsap'
 
 export function useScrollReveal<T extends HTMLElement>(options?: {
@@ -6,10 +6,11 @@ export function useScrollReveal<T extends HTMLElement>(options?: {
   duration?: number
   stagger?: number
   selector?: string
+  start?: string
 }) {
   const ref = useRef<T | null>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!ref.current) return
     const el = ref.current
     const targets = options?.selector
@@ -28,7 +29,7 @@ export function useScrollReveal<T extends HTMLElement>(options?: {
           stagger: options?.stagger ?? 0.08,
           scrollTrigger: {
             trigger: el,
-            start: 'top 80%',
+            start: options?.start ?? 'top 80%',
             toggleActions: 'play none none reverse',
           },
         },
@@ -36,7 +37,7 @@ export function useScrollReveal<T extends HTMLElement>(options?: {
     }, el)
 
     return () => ctx.revert()
-  }, [options?.y, options?.duration, options?.stagger, options?.selector])
+  }, [options?.y, options?.duration, options?.stagger, options?.selector, options?.start,])
 
   return ref
 }

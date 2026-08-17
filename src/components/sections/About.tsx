@@ -7,23 +7,23 @@ export function About() {
   return (
     <section
       id='about'
-      className='section-block bg-lilac px-4 py-24 text-tone-ink sm:px-8'
+      className='section-block bg-violet px-4 py-24 text-ink sm:px-8 '
     >
-      <div ref={ref} className='mx-auto w-full max-w-5xl'>
+      <div ref={ref} className='mx-auto w-full max-w-6xl '>
         <SectionHeading
-          eyebrow='01 - About'
-          title='Nice to meet you'
+          label='About'
+          title='The short version'
           className='reveal'
         />
-        <p className='reveal max-w-2xl font-display text-3xl font-light leading-tight sm:text-5xl'>
-          I'm Alice, a frontend dev student from Stockholm - still learning,
-          still building.
+        <p className='reveal max-w-2xl font-display text-3xl font-semibold text-justify [text-align-last:justify] leading-tight sm:text-5xl'>
+          Frontend dev student from Stockholm, probably overthinking a button
+          somewhere.
         </p>
         <p className='reveal mt-8 max-w-xl text-base leading-relaxed sm:text-lg opacity-80'>
-          Currently in my second year at Chas Academy (2025-2027), focused on
-          building clean, accessible, user-centered interfaces. Looking for a
-          six-month internship (Nov 2026-Apr 2027) to learn from a real team, on
-          real products, with real users.
+          Second year at Chas Academy (2025-2027), focused on clean, accessible,
+          user-centered interfaces. Currently on the hunt for a six-month
+          internship (Nov 2026-Apr 2027) to learn from a real team, on real
+          products, with real users.
         </p>
       </div>
     </section>
