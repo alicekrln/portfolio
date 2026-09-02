@@ -1,6 +1,6 @@
 import { FigmaIcon, GithubIcon } from '@/components/icons'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
-import { PROJECTS, toneBg, toneText, type Project } from '@/lib/data'
+import { PROJECTS, toneBg, type Project } from '@/lib/data'
 import { createFileRoute, Link, notFound } from '@tanstack/react-router'
 import { ArrowLeft, ExternalLink } from 'lucide-react'
 

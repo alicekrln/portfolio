@@ -1,3 +1,9 @@
+import matchmatchCover from '@/components/projects/matchmatch/cover.jpg'
+import matchmatchGrid from '@/components/projects/matchmatch/grid.jpg'
+import matchmatchRepo from '@/components/projects/matchmatch/github.jpg'
+import vollyCover from '@/components/projects/volly/cover.jpg'
+import vollyFigma from '@/components/projects/volly/figma.jpg'
+import vollyCall from '@/components/projects/volly/videocall.jpg'
 import {
   Code2,
   Globe,
@@ -7,6 +13,7 @@ import {
   Wrench,
   type LucideIcon,
 } from 'lucide-react'
+
 
 export type Tone =
   'coral' | 'teal' | 'violet' | 'pink' | 'lime' | 'sun' | 'carib' | 'softPink' | 'softLime' | 'ink' | 'about'
@@ -173,7 +180,7 @@ export const PROJECTS: Project[] = [
     role: 'Frontend Developer',
     overview:
       'matchmatch is a browser game where players sort words into hidden categories without knowing the categories in advance. Data is dynamically fetched from the Wikipedia API using TanStack Query, while Zustand manages the game state. Features include a hint system, dynamic gameplay, score tracking, and a customizable interface with editable category cards, personalized colors, and Grid Mode for different game board layouts.',
-    cover: '/src/components/projects/matchmatch/cover.jpg',
+    cover: matchmatchCover,
     links: [
       {
         label: 'Play the game',
@@ -189,12 +196,12 @@ export const PROJECTS: Project[] = [
     media: [
       {
         type: 'image',
-        src: '/src/components/projects/matchmatch/grid.jpg',
+        src: matchmatchGrid,
         alt: 'Game layout',
       },
       {
         type: 'image',
-        src: '/src/components/projects/matchmatch/github.jpg',
+        src: matchmatchRepo,
         alt: 'Github repo',
       },
     ],
@@ -211,7 +218,7 @@ export const PROJECTS: Project[] = [
     role: 'UX Designer & Frontend Developer',
     overview:
       'Developed in a cross-functional team. The platform focuses on accessibility, intuitive user flows, and community-driven interactions through posts, messaging and video chat. My primary responsibility was designing the user experience in Figma, including wireframes, user flows, and interactive prototypes, while also contributing to the frontend implementation during the final stages of development.\n\nDemo login: dl@volly.se pw: demo123',
-    cover: '/src/components/projects/volly/cover.jpg',
+    cover: vollyCover,
     links: [
       {
         label: 'Staged site',
@@ -233,12 +240,12 @@ export const PROJECTS: Project[] = [
       },
       {
         type: 'image',
-        src: '/src/components/projects/volly/figma.jpg',
+        src: vollyFigma,
         alt: 'Figma components',
       },
       {
         type: 'image',
-        src: '/src/components/projects/volly/videocall.jpg',
+        src: vollyCall,
         alt: 'Videocall prototype',
       },
     ],
