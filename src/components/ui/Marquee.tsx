@@ -22,7 +22,7 @@ export function Marquee() {
     const el = trackRef.current
     const tween = gsap.to(el, {
       xPercent: -50,
-      duration: 22,
+      duration: 34,
       ease: 'linear',
       repeat: -1,
     })
@@ -38,7 +38,7 @@ export function Marquee() {
   }, [])
 
   return (
-    <section className='overflow-hidden bg-foreground py-6 text-background sm:py-8'>
+    <section className='overflow-hidden bg-foreground py-4 text-background sm:py-6'>
       <div
         ref={trackRef}
         className='flex w-max items-center gap-12 whitespace-nowrap will-change-transform'

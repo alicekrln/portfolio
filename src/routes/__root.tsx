@@ -2,7 +2,7 @@ import { Outlet, createRootRoute, useRouterState } from '@tanstack/react-router'
 import NavBar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import { useEffect } from 'react'
-import { ScrollTrigger } from '@/lib/gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
 
 export const Route = createRootRoute({
   component: RootComponent,

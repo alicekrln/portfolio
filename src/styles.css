@@ -92,12 +92,12 @@
 
   --hero-bg: oklch(0.8918 0.0338 97.73);
   --about-bg: oklch(0.5386 0.2555 267.8);
-  --contact-bg: oklch(0.1398 0 0);
+  --contact-bg: oklch(0.9581 0 0);
   --stack-bg: oklch(0.8635 0.0181 240.03);
 
   --hero-txt: oklch(0.5658 0.2108 11.69);
   --about-txt: oklch(0.9581 0 0);
-  --contact-txt: oklch(0.913552 0.182356 100.1325);
+  --contact-txt: oklch(0.14 0.02 280);
   --stack-txt: oklch(59.009% 0.22398 29.556);
 
   --ink: oklch(0.14 0.02 280);

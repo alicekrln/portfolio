@@ -1,45 +1,132 @@
-import { Star } from 'lucide-react'
 import { useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SplitText } from 'gsap/SplitText'
 import { BlobPath } from '../shapes'
+import { useIntroStore } from '@/stores/useIntroStore'
+
+gsap.registerPlugin(ScrollTrigger, SplitText)
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
   const blobRef = useRef<SVGSVGElement>(null)
-  const introRef = useRef<HTMLDivElement>(null)
+  const nameRef = useRef<HTMLHeadingElement>(null)
+  const taglineRef = useRef<HTMLParagraphElement>(null)
+  const setNameRevealed = useIntroStore((s) => s.setNameRevealed)
 
   useLayoutEffect(() => {
-    if (!sectionRef.current) return
+    if (!sectionRef.current || !nameRef.current || !taglineRef.current) return
+    if (!blobRef.current) return
+
+    document.documentElement.style.overflow = 'hidden'
+
     const ctx = gsap.context(() => {
-      gsap.from(introRef.current, {
-        opacity: 0,
-        y: 40,
-        duration: 1,
-        ease: 'power3.out',
-        delay: 0.1,
+      const nameSplit = new SplitText(nameRef.current, { type: 'chars' })
+      const taglineSplit = new SplitText(taglineRef.current, { type: 'words' })
+
+      gsap.set(nameSplit.chars, { display: 'inline-block' })
+      gsap.set(taglineSplit.words, { display: 'inline-block' })
+
+      const intro = gsap.timeline({
+        delay: 0.2,
+
+        onComplete: () => {
+          document.documentElement.style.overflow = ''
+
+          setNameRevealed()
+
+          const mid = Math.ceil(taglineSplit.words.length / 2)
+          const left = taglineSplit.words.slice(0, mid)
+          const right = taglineSplit.words.slice(mid)
+
+          gsap.set(blobRef.current, { transformOrigin: 'bottom right' })
+
+          gsap
+            .timeline({
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top top',
+                end: '+=150%',
+                scrub: 0.5,
+                pin: true,
+                invalidateOnRefresh: true,
+              },
+            })
+            .to(
+              left,
+              { xPercent: -220, opacity: 0, stagger: 0.02, ease: 'power2.in' },
+              0,
+            )
+            .to(
+              right,
+              { xPercent: 220, opacity: 0, stagger: 0.02, ease: 'power2.in' },
+              0,
+            )
+            .to(blobRef.current, { scale: 20, ease: 'none' }, 0.4)
+
+          ScrollTrigger.refresh()
+        },
       })
 
-      gsap.set(blobRef.current, { transformOrigin: 'bottom right' })
-      gsap.to(blobRef.current, {
-        scale: 24,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 0.5,
-        },
+      intro
+        .from(nameSplit.chars, {
+          yPercent: 130,
+          rotate: 8,
+          opacity: 0,
+          duration: 1,
+          ease: 'power4.out',
+          stagger: 0.045,
+        })
+        .from(
+          taglineSplit.words,
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: 'power3.out',
+            stagger: 0.05,
+          },
+          '-=0.35',
+        )
+
+      nameSplit.chars.forEach((char) => {
+        char.addEventListener('mouseenter', () => {
+          gsap
+            .timeline({ defaults: {
+              ease: 'elastic.out(1, 0.4)',
+            },
+          })
+            .to(char, {
+              y: -16,
+              scale: 1.25,
+              color: 'var(--magenta)',
+              duration: 0.35,
+            })
+            .to(
+              char,
+              {
+                y: 0, 
+                scale: 1, 
+                color: 'inherit', 
+                duration: 0.4,
+              },
+              '+=0.05',
+            )
+        })
       })
     }, sectionRef)
 
-    return () => ctx.revert()
-  }, [])
+    return () => {
+      document.documentElement.style.overflow = ''
+      ctx.revert()
+    }
+  }, [setNameRevealed])
 
   return (
     <section
       ref={sectionRef}
       id='top'
-      className='section-block relative bg-hero-bg px-4 pt-24 pb-24 text-ink sm:px-8 sm:pt-28 sm:pb-32'
+      className='section-block relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-hero-bg px-4 text-center text-ink'
     >
       <BlobPath
         fillColor='about'
@@ -47,43 +134,18 @@ export function Hero() {
         className='pointer-events-none absolute -bottom-15 -right-10 h-24 w-24'
       />
 
-      <div
-        ref={introRef}
-        className='relative grid gap-14 lg:grid-cols-[1.45fr_1fr] lg:items-center'
+      <h1
+        ref={nameRef}
+        className='font-display text-[clamp(3rem,12vw,9rem)] font-bold uppercase leading-[0.9] tracking-[-0.02em] text-hero-txt'
       >
-        <div className='text-hero-txt'>
-          <h1 className='font-display text-[clamp(2.75rem,9vw,7rem)] font-bold leading-[0.95] tracking-[-0.02em]'>
-            I'm
-            <span className='relative mx-4 inline-block text-about-bg'>
-              Alice
-              <svg
-                viewBox='0 0 200 14'
-                className='absolute -bottom-1 left-0 h-2.5 w-full text-contact-txt'
-                preserveAspectRatio='none'
-              >
-                <path
-                  d='M2 8 Q 50 0 100 8 T 198 8'
-                  stroke='currentColor'
-                  strokeWidth='14'
-                  fill='none'
-                  strokeLinecap='round'
-                />
-              </svg>
-            </span>
-            <span className='opacity-60'>,</span>
-            <br />a <span className='italic'>frontend dev</span>
-            <Star
-              className='mx-2 inline-block h-[0.55em] w-[0.55em] fill-sun animate-spin-slow'
-              strokeWidth={0}
-            />
-            <span className='text-outline'>still in beta.</span>
-          </h1>
-          <p className='mt-6 max-w-md font-mono text-sm text-justify [text-align-last:justify] leading-relaxed opacity-80 sm:text-base'>
-            Stockholm-based · Chas Academy '25-'27 · Open to a six-month
-            internship (Nov '26-Apr '27)
-          </p>
-        </div>
-      </div>
+        Alice Karlén
+      </h1>
+      <p
+        ref={taglineRef}
+        className='mt-6 font-display font-bold text-sm uppercase tracking-[0.3em] opacity-70 sm:text-base'
+      >
+        Frontend developer in beta
+      </p>
     </section>
   )
 }

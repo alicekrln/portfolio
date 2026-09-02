@@ -3,47 +3,84 @@ import { NAV } from '../../lib/data'
 import { SmileyButton } from './SmileyButton'
 import { useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { SplitText } from 'gsap/SplitText'
+import { useIntroStore } from '@/stores/useIntroStore'
+
+gsap.registerPlugin(SplitText)
 
 export default function NavBar() {
   const navRef = useRef<HTMLDivElement>(null)
+  const linkRefs = useRef<Array<HTMLAnchorElement | null>>([])
+  const allCharsRef = useRef<Element[]>([])
+  const nameRevealed = useIntroStore((s) => s.nameRevealed)
 
   useLayoutEffect(() => {
     if (!navRef.current) return
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.nav-reveal',
-        {
-          opacity: 0,
-          y: -30,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: 'power3.out',
-          stagger: 0.08,
-        }
+      const links = linkRefs.current.filter(
+        (el): el is HTMLAnchorElement => !!el,
       )
-    }, navRef)
+      const splits = links.map((el) => new SplitText(el, { type: 'chars' }))
+      const allChars = splits.flatMap((s) => s.chars)
+      allCharsRef.current = allChars
+      gsap.set(allChars, { opacity: 0, y: -16, display: 'inline-block' })
 
+      links.forEach((el, i) => {
+        const chars = splits[i].chars
+        el.addEventListener('mouseenter', () =>
+          gsap.to(chars, {
+            y: -6,
+            color: 'var(--tangerine)',
+            stagger: 0.02,
+            duration: 0.3,
+            ease: 'power2.out',
+            overwrite: true,
+          }),
+        )
+        el.addEventListener('mouseleave', () =>
+          gsap.to(chars, {
+            y: 0,
+            color: 'inherit',
+            stagger: 0.02,
+            duration: 0.3,
+            ease: 'power2.out',
+            overwrite: true,
+          }),
+        )
+      })
+    }, navRef)
     return () => ctx.revert()
   }, [])
 
+  useLayoutEffect(() => {
+    if (!nameRevealed || allCharsRef.current.length === 0) return
+    gsap.to(allCharsRef.current, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      ease: 'power3.out',
+      stagger: 0.025,
+    })
+  }, [nameRevealed])
+
   return (
-    <header className='fixed inset-x-0 top-0 z-40 flex justify-center px-2 pt-3 sm:pt-4'>
+    <header className='fixed inset-x-0 top-0 z-40 flex w-full '>
       <div
         ref={navRef}
-        className='flex w-full max-w-3xl items-center gap-1 rounded-full bg-foreground/95 px-2 py-2 text-background backdrop-blur-xl border-2 border-violet sm:gap-2 sm:px-3'
+        className='flex w-full py-2 items-center justify-between text-foreground sm:px-3'
       >
         <SmileyButton />
-        <nav className='flex flex-1 items-center justify-center gap-0.5 overflow-x-auto overflow-y-hidden sm:gap-1 md:absolute md:left-1/2 md:z-0 md:flex md:-translate-x-1/2'>
-          {NAV.map((n) => (
+        <nav className='flex items-center justify-center gap-0 sm:gap-0.5 '>
+          {NAV.map((n, i) => (
             <Link
               key={n.hash}
+              ref={(el) => {
+                linkRefs.current[i] = el
+              }}
               to='/'
               hash={n.hash}
-              className='nav-reveal shrink-0 rounded-full px-2.5 py-2 font-display text-[11px] font-bold uppercase tracking-wider transition-colors hover:bg-background/15 sm:px-4 sm:text-sm sm:tracking-[0.1em]'
+              className='shrink-0 px-2.5 py-2 font-display text-[11px] font-bold uppercase tracking-wider sm:px-3 sm:text-xs sm:tracking-widest'
             >
               {n.label}
             </Link>
@@ -51,5 +88,7 @@ export default function NavBar() {
         </nav>
       </div>
     </header>
+
+
   )
 }
