@@ -136,7 +136,7 @@ export function Hero() {
 
       <h1
         ref={nameRef}
-        className='font-display text-[clamp(3rem,12vw,9rem)] font-bold uppercase leading-[0.9] tracking-[-0.02em] text-hero-txt'
+        className='font-display text-[clamp(3rem,12vw,9rem)] font-bold uppercase leading-[0.9] tracking-[-0.02em] text-stack-txt'
       >
         Alice Karlén
       </h1>

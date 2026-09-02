@@ -31,7 +31,7 @@ export function Contact() {
   return (
     <section
       id='contact'
-      className='section-block relative overflow-hidden bg-contact-bg px-4 py-24 text-background sm:px-8'
+      className='section-block relative overflow-hidden bg-hero-bg px-4 py-24 text-background border-t-5 border-stack-txt sm:px-8'
     >
       <Flower2
         fillColor='about'

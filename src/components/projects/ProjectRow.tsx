@@ -23,16 +23,15 @@ export function ProjectRow({
     const ctx = gsap.context(() => {
       gsap.fromTo(
         img,
-        { scale: 1.18, y: -24 },
+        { scale: 1.50 },
         {
-          scale: 1.02,
-          y: 24,
-          ease: 'none',
+          scale: 1,
+          ease: 'power3.in',
           scrollTrigger: {
             trigger: imageWrapRef.current,
             start: 'top bottom',
             end: 'bottom top',
-            scrub: 0.6,
+            scrub: 1,
           },
         },
       )

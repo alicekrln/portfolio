@@ -65,10 +65,10 @@ export default function NavBar() {
   }, [nameRevealed])
 
   return (
-    <header className='fixed inset-x-0 top-0 z-40 flex w-full '>
+    <header className='fixed inset-x-0 top-0 z-40 flex w-full overflow-hidden'>
       <div
         ref={navRef}
-        className='flex w-full py-2 items-center justify-between text-foreground sm:px-3'
+        className='flex w-full py-2 px-2 items-center justify-between text-foreground sm:px-5'
       >
         <SmileyButton />
         <nav className='flex items-center justify-center gap-0 sm:gap-0.5 '>
