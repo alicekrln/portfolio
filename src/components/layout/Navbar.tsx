@@ -49,7 +49,6 @@ export default function NavBar() {
             </Link>
           ))}
         </nav>
-        {/* <div className='sm:w-11 shrink-0' aria-hidden /> */}
       </div>
     </header>
   )
