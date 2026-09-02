@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 
 export type Tone =
-  'coral' | 'teal' | 'violet' | 'pink' | 'lime' | 'sun' | 'carib' | 'softPink' | 'softLime' | 'ink'
+  'coral' | 'teal' | 'violet' | 'pink' | 'lime' | 'sun' | 'carib' | 'softPink' | 'softLime' | 'ink' | 'about'
 
 export const NAV = [
   { label: 'About', hash: 'about' },
@@ -93,6 +93,7 @@ export const toneBg: Record<Tone, string> = {
   softPink: 'bg-softPink',
   softLime: 'bg-softLime',
   ink: 'bg-ink',
+  about: 'bg-about-bg'
 }
 
 export const toneText: Record<Tone, string> = {
@@ -106,6 +107,7 @@ export const toneText: Record<Tone, string> = {
   softPink: 'text-softPink',
   softLime: 'text-softLime',
   ink: 'text-ink',
+  about: 'text-about-bg'
 }
 
 export const toneColor: Record<Tone, string> = {
@@ -119,6 +121,7 @@ export const toneColor: Record<Tone, string> = {
   softPink: 'var(--color-softPink)',
   softLime: 'var(--color-softLime)',
   ink: 'var(--color-ink)',
+  about: 'var(--color-about-bg)',
 }
 
 export type ProjectLink = {

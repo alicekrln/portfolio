@@ -32,7 +32,7 @@ export function Contact() {
   return (
     <section
       id='contact'
-      className='section-block relative overflow-hidden bg-foreground px-4 py-24 text-background sm:px-8'
+      className='section-block relative overflow-hidden bg-contact-bg px-4 py-24 text-background sm:px-8'
     >
       <Flower2
         fillColor='violet'
@@ -55,13 +55,13 @@ export function Contact() {
         className='pointer-events-none absolute -bottom-26 left-4/10 lg:left-5/10 h-0 w-0 animate-wiggle md:h-52 md:w-52 lg:h-64 lg:w-64 opacity-40'
       />
 
-      <div ref={ref} className='relative mx-auto w-full max-w-6xl'>
+      <div ref={ref} className='relative mx-auto w-full max-w-6xl text-contact-txt'>
         <SectionHeading
           label='Contact'
           title="Let's talk"
           className='reveal'
         />
-        <p className='reveal max-w-md text-base leading-relaxed opacity-70 sm:text-lg'>
+        <p className='reveal max-w-md text-base leading-relaxed sm:text-lg'>
           Internship-hunting and always up for a chat about frontend, design, or
           both.
         </p>

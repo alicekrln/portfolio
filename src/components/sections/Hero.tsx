@@ -39,24 +39,26 @@ export function Hero() {
     <section
       ref={sectionRef}
       id='top'
-      className='section-block relative bg-coral px-4 pt-24 pb-24 text-ink sm:px-8 sm:pt-28 sm:pb-32'
+      className='section-block relative bg-hero-bg px-4 pt-24 pb-24 text-ink sm:px-8 sm:pt-28 sm:pb-32'
     >
-      <BlobPath fillColor='violet' ref={blobRef}
-      className='pointer-events-none absolute -bottom-15 -right-10 h-24 w-24'
+      <BlobPath
+        fillColor='about'
+        ref={blobRef}
+        className='pointer-events-none absolute -bottom-15 -right-10 h-24 w-24'
       />
 
       <div
         ref={introRef}
         className='relative grid gap-14 lg:grid-cols-[1.45fr_1fr] lg:items-center'
       >
-        <div>
+        <div className='text-hero-txt'>
           <h1 className='font-display text-[clamp(2.75rem,9vw,7rem)] font-bold leading-[0.95] tracking-[-0.02em]'>
             I'm
-            <span className='relative mx-4 inline-block text-carib'>
+            <span className='relative mx-4 inline-block text-about-bg'>
               Alice
               <svg
                 viewBox='0 0 200 14'
-                className='absolute -bottom-1 left-0 h-2.5 w-full text-sun'
+                className='absolute -bottom-1 left-0 h-2.5 w-full text-contact-txt'
                 preserveAspectRatio='none'
               >
                 <path
@@ -77,7 +79,8 @@ export function Hero() {
             <span className='text-outline'>still in beta.</span>
           </h1>
           <p className='mt-6 max-w-md font-mono text-sm text-justify [text-align-last:justify] leading-relaxed opacity-80 sm:text-base'>
-            Stockholm-based · Chas Academy '25-'27 · Open to a six-month internship (Nov '26-Apr '27)
+            Stockholm-based · Chas Academy '25-'27 · Open to a six-month
+            internship (Nov '26-Apr '27)
           </p>
         </div>
       </div>

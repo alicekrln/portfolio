@@ -91,9 +91,9 @@ export function Stack() {
   return (
     <section
       id='stack'
-      className='section-block bg-teal px-4 py-24 text-ink sm:px-8'
+      className='section-block bg-stack-bg px-4 py-24 text-ink sm:px-8'
     >
-      <div className='mx-auto w-full max-w-6xl'>
+      <div className='mx-auto w-full max-w-6xl text-stack-txt'>
         <div ref={headingRef} >
           <SectionHeading label='Skills' title='Still leveling up' className='reveal' />
         </div>
