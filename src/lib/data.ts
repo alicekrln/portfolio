@@ -42,7 +42,7 @@ export const SKILLS: Skill[] = [
   {
     icon: Layers3,
     name: 'Frontend',
-    note: 'React, TanStack, Zustand, Motion, GSAP',
+    note: 'React, TanStack, Zustand, Motion, GSAP, Node.js, Vite, Next.js',
     tone: 'pink',
   },
   {
@@ -60,7 +60,7 @@ export const SKILLS: Skill[] = [
   {
     icon: Wrench,
     name: 'Development Tools',
-    note: 'Git, GitHub, GitLab, npm, Node.js, Vite, VS Code',
+    note: 'Git, GitHub, GitLab, npm, Zod, Vercel',
     tone: 'carib',
   },
   {
@@ -87,6 +87,8 @@ export const MARQUEE = [
   'Affinity',
   'npm',
   'shadcn',
+  'Zod',
+  'Vercel',
 ]
 
 export const toneBg: Record<Tone, string> = {

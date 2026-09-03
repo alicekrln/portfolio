@@ -12,7 +12,7 @@ export default function Footer() {
     <footer className='relative overflow-hidden border-t-5 border-stack-txt bg-hero-bg'>
       <div
         ref={ref}
-        className='mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-8 sm:px-8'
+        className='mx-auto flex flex-wrap items-center justify-between gap-3 px-4 py-8 sm:px-8'
       >
         <div className='reveal font-display font-bold text-xs uppercase tracking-wider text-stack-txt'>
           © 2026 Alice Karlén

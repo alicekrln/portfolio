@@ -18,8 +18,6 @@ export function Hero() {
     if (!sectionRef.current || !nameRef.current || !taglineRef.current) return
     if (!blobRef.current) return
 
-    document.documentElement.style.overflow = 'hidden'
-
     const ctx = gsap.context(() => {
       const nameSplit = new SplitText(nameRef.current, { type: 'chars' })
       const taglineSplit = new SplitText(taglineRef.current, { type: 'words' })
@@ -31,8 +29,6 @@ export function Hero() {
         delay: 0.2,
 
         onComplete: () => {
-          document.documentElement.style.overflow = ''
-
           setNameRevealed()
 
           const mid = Math.ceil(taglineSplit.words.length / 2)
@@ -46,7 +42,7 @@ export function Hero() {
               scrollTrigger: {
                 trigger: sectionRef.current,
                 start: 'top top',
-                end: '+=150%',
+                end: '+=250%',
                 scrub: 0.5,
                 pin: true,
                 invalidateOnRefresh: true,
@@ -62,9 +58,9 @@ export function Hero() {
               { xPercent: 220, opacity: 0, stagger: 0.02, ease: 'power2.in' },
               0,
             )
-            .to(blobRef.current, { scale: 20, ease: 'none' }, 0.4)
+            .to(blobRef.current, { scale: 20, ease: 'none' }, 0.5)
 
-          ScrollTrigger.refresh()
+          requestAnimationFrame(() => ScrollTrigger.refresh())
         },
       })
 
@@ -117,7 +113,6 @@ export function Hero() {
     }, sectionRef)
 
     return () => {
-      document.documentElement.style.overflow = ''
       ctx.revert()
     }
   }, [setNameRevealed])
@@ -131,12 +126,12 @@ export function Hero() {
       <BlobPath
         fillColor='about'
         ref={blobRef}
-        className='pointer-events-none absolute -bottom-15 -right-10 h-24 w-24'
+        className='pointer-events-none absolute -bottom-20 -right-10 h-24 w-48'
       />
 
       <h1
         ref={nameRef}
-        className='font-display text-[clamp(3rem,12vw,9rem)] font-bold uppercase leading-[0.9] tracking-[-0.02em] text-stack-txt'
+        className='font-passion font-extrabold text-[clamp(3rem,12vw,9rem)] uppercase leading-[0.9] tracking-wide text-stack-txt'
       >
         Alice Karlén
       </h1>
