@@ -80,7 +80,7 @@ export default function NavBar() {
               }}
               to='/'
               hash={n.hash}
-              className='shrink-0 px-2.5 py-2 font-display text-[11px] font-bold uppercase tracking-wider sm:px-3 sm:text-xs sm:tracking-widest'
+              className='shrink-0 px-2.5 py-2 font-display text-[12px] font-bold uppercase tracking-wider sm:px-3 sm:text-xs sm:tracking-widest'
             >
               {n.label}
             </Link>
