@@ -35,7 +35,7 @@ export function Contact() {
     >
       <Flower2
         fillColor='about'
-        className='absolute right-6 -top-2 h-72 w-72 animate-float rotate-12 sm:h-96 sm:w-96 '
+        className='absolute right-6 -top-2 h-72 w-72 animate-wiggle rotate-12 sm:h-96 sm:w-96 '
       />
       <Flower3
         fillColor='about'

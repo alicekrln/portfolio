@@ -18,6 +18,8 @@ export function Hero() {
     if (!sectionRef.current || !nameRef.current || !taglineRef.current) return
     if (!blobRef.current) return
 
+    document.documentElement.style.overflow = 'hidden'
+
     const ctx = gsap.context(() => {
       const nameSplit = new SplitText(nameRef.current, { type: 'chars' })
       const taglineSplit = new SplitText(taglineRef.current, { type: 'words' })
@@ -29,6 +31,8 @@ export function Hero() {
         delay: 0.2,
 
         onComplete: () => {
+          document.documentElement.style.overflow = ''
+
           setNameRevealed()
 
           const mid = Math.ceil(taglineSplit.words.length / 2)
@@ -60,7 +64,7 @@ export function Hero() {
             )
             .to(blobRef.current, { scale: 20, ease: 'none' }, 0.5)
 
-          requestAnimationFrame(() => ScrollTrigger.refresh())
+          ScrollTrigger.refresh()
         },
       })
 
@@ -113,6 +117,7 @@ export function Hero() {
     }, sectionRef)
 
     return () => {
+      document.documentElement.style.overflow = ''
       ctx.revert()
     }
   }, [setNameRevealed])
