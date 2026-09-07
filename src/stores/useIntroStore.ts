@@ -1,11 +1,13 @@
 import { create } from 'zustand'
 
+export type IntroPhase = 'name' | 'nav' | 'done'
+
 type IntroStore = {
-  nameRevealed: boolean
-  setNameRevealed: () => void
+  phase: IntroPhase
+  setPhase: (phase: IntroPhase) => void
 }
 
 export const useIntroStore = create<IntroStore>((set) => ({
-  nameRevealed: false,
-  setNameRevealed: () => set({ nameRevealed: true }),
+  phase: 'name',
+  setPhase: (phase) => set({ phase }),
 }))

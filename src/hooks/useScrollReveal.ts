@@ -31,13 +31,20 @@ export function useScrollReveal<T extends HTMLElement>(options?: {
             trigger: el,
             start: options?.start ?? 'top 80%',
             toggleActions: 'play none none reverse',
+            invalidateOnRefresh: true,
           },
         },
       )
     }, el)
 
     return () => ctx.revert()
-  }, [options?.y, options?.duration, options?.stagger, options?.selector, options?.start,])
+  }, [
+    options?.y,
+    options?.duration,
+    options?.stagger,
+    options?.selector,
+    options?.start,
+  ])
 
   return ref
 }

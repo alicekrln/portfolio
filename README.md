@@ -14,6 +14,7 @@ Personal portfolio website showcasing my work.
 - GSAP and ScrollTrigger
 - Lucide React
 - ESLint
+- Zustand
 
 ## Getting started
 

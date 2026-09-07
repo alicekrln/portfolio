@@ -35,15 +35,15 @@ export function Contact() {
     >
       <Flower2
         fillColor='about'
-        className='absolute right-6 -top-2 h-72 w-72 animate-wiggle rotate-12 sm:h-96 sm:w-96 '
+        className='absolute -right-4 sm:right-7 -top-2 h-72 w-72 animate-wiggle rotate-12 sm:h-96 sm:w-96 '
       />
       <Flower3
         fillColor='about'
-        className='pointer-events-none absolute -bottom-12 -left-1 h-44 w-44 animate-float -rotate-6 sm:h-80 sm:w-80 '
+        className='pointer-events-none absolute -bottom-8 sm:-bottom-12 -left-4 sm:-left-1 h-52 w-52 animate-wiggle -rotate-8 sm:h-80 sm:w-80 '
       />
       <Flower1
         fillColor='about'
-        className='pointer-events-none absolute -bottom-14 right-2 h-36 w-36 animate-spin-slow sm:h-64 sm:w-64'
+        className='pointer-events-none absolute -bottom-12 -right-6 sm:-bottom-14 sm:right-2 h-40 w-40 animate-float sm:h-64 sm:w-64'
       />
       <Flower1
         fillColor='about'
@@ -51,7 +51,7 @@ export function Contact() {
       />
       <Flower2
         fillColor='about'
-        className='pointer-events-none absolute -bottom-26 left-4/10 lg:left-5/10 h-0 w-0 animate-wiggle md:h-52 md:w-52 lg:h-64 lg:w-64'
+        className='pointer-events-none absolute -bottom-26 left-4/10 lg:left-5/10 h-0 w-0 animate-spin-slow md:h-52 md:w-52 lg:h-64 lg:w-64'
       />
 
       <div

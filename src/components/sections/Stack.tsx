@@ -69,6 +69,7 @@ export function Stack() {
             trigger: containerRef.current,
             start: 'top 75%',
             toggleActions: 'play none none reverse',
+            invalidateOnRefresh: true,
           },
         },
       )

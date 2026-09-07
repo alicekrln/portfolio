@@ -27,7 +27,7 @@ function ProjectDetail() {
   return (
     <article>
       <header
-        className={`section-block ${toneBg[project.tone]} px-4 py-24 text-ink sm:px-8`}
+        className={` ${toneBg[project.tone]} px-4 py-24 text-ink sm:px-8`}
       >
         <div className='mx-auto w-full max-w-4xl'>
           <Link

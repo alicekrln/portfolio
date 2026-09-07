@@ -234,4 +234,9 @@ html {
   scroll-behavior: smooth;
   overflow-x: clip;
   overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+.scroll-locked {
+  overflow-y: hidden !important;
 }
