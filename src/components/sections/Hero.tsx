@@ -62,10 +62,11 @@ export function Hero() {
           .to(taglineSplit.words.slice(0, mid), { xPercent: -250, opacity: 0, stagger: 0.02, ease: 'power2.in' }, 0)
           .to(taglineSplit.words.slice(mid), { xPercent: 250, opacity: 0, stagger: 0.02, ease: 'power2.in' }, 0)
           .to(blobRef.current, { scale: 18, ease: 'none' }, 0.5)
+          .set(document.body, { backgroundColor: 'var(--color-carib)' }, 0.9)
       }
 
       if (skipIntro) {
-        gsap.set(curtainRef.current, { autoAlpha: 0 })
+        gsap.set(curtainRef.current, { display: 'none' })
         buildScrollOut()
         if (current === 'name') setPhase('nav')
       } else {
@@ -81,7 +82,7 @@ export function Hero() {
         gsap
           .timeline({ defaults: { ease: 'power4.inOut' } })
           .to(panels, { yPercent: -100, duration: 0.7, stagger: { each: 0.07, from: 'end' } })
-          .set(curtainRef.current, { autoAlpha: 0 })
+          .set(curtainRef.current, { display: 'none' })
           .to(
             chars,
             {
@@ -114,38 +115,44 @@ export function Hero() {
   )
 
   return (
-    <section
-      ref={sectionRef}
-      id='top'
-      className='section-block items-center bg-cream px-4 text-center text-ink'
-    >
-      <BlobPath
-        tone='carib'
-        ref={blobRef}
-        className='pointer-events-none absolute -bottom-20 -right-10 h-24 w-48'
-      />
-
-      <h1
-        ref={nameRef}
-        className={cn(
-          'invisible font-passion text-[clamp(3rem,12vw,9rem)] font-black uppercase leading-[0.9] text-orange',
-          phase === 'name' && 'pointer-events-none',
-        )}
+    <>
+      <section
+        ref={sectionRef}
+        id='top'
+        className='section-block items-center px-4 text-center text-ink'
       >
-        Alice Karlén
-      </h1>
-      <p
-        ref={taglineRef}
-        className='invisible mt-6 font-display text-sm font-bold uppercase tracking-[0.3em] opacity-70 sm:text-base'
-      >
-        Frontend developer in beta
-      </p>
+        <BlobPath
+          tone='carib'
+          ref={blobRef}
+          className='pointer-events-none absolute -bottom-28 -right-10 h-24 w-48'
+        />
 
-      <div ref={curtainRef} aria-hidden='true' className='pointer-events-none absolute inset-0 z-10'>
+        <h1
+          ref={nameRef}
+          className={cn(
+            'invisible font-passion text-[clamp(3rem,12vw,9rem)] font-black uppercase leading-[0.9] text-orange',
+            phase === 'name' && 'pointer-events-none',
+          )}
+        >
+          Alice Karlén
+        </h1>
+        <p
+          ref={taglineRef}
+          className='invisible mt-6 font-display text-sm font-bold uppercase tracking-[0.3em] opacity-70 sm:text-base'
+        >
+          Frontend developer in beta
+        </p>
+      </section>
+
+      <div
+        ref={curtainRef}
+        aria-hidden='true'
+        className='pointer-events-none absolute inset-x-0 top-0 z-30 h-svh overflow-hidden'
+      >
         {CURTAIN.map((bg) => (
           <div key={bg} className={cn('absolute inset-0', bg)} />
         ))}
       </div>
-    </section>
+    </>
   )
 }

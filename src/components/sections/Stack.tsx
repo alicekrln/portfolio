@@ -1,15 +1,15 @@
 'use client'
 
 import { useRef } from 'react'
-import { gsap, SplitText, useGSAP } from '@/lib/gsap'
+import { gsap, ScrollTrigger, SplitText, useGSAP } from '@/lib/gsap'
 import { SKILLS, toneBg, type Tone } from '@/lib/data'
 import { cn } from '@/lib/utils'
 import { Reveal } from '../ui/Reveal'
 import { SectionHeading } from '../ui/SectionHeading'
 
 const hoverText: Partial<Record<Tone, string>> = {
-  carib: 'hover:text-snow',
-  violet: 'hover:text-snow',
+  carib: 'hover:text-snow data-active:text-snow',
+  violet: 'hover:text-snow data-active:text-snow',
 }
 
 export function Stack() {
@@ -18,6 +18,21 @@ export function Stack() {
   useGSAP(
     () => {
       const mm = gsap.matchMedia()
+
+      // Touch devices can't hover, so each row lights up while it passes
+      // through the middle of the screen instead
+      mm.add('(hover: none)', () => {
+        const rows = gsap.utils.toArray<HTMLElement>('.skill-row')
+        rows.forEach((row) => {
+          ScrollTrigger.create({
+            trigger: row,
+            start: 'top 55%',
+            end: 'bottom 55%',
+            onToggle: (self) => row.toggleAttribute('data-active', self.isActive),
+          })
+        })
+        return () => rows.forEach((row) => row.removeAttribute('data-active'))
+      })
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         gsap.utils.toArray<HTMLElement>('.skill-row').forEach((row, i) => {
@@ -73,7 +88,7 @@ export function Stack() {
               <span
                 aria-hidden='true'
                 className={cn(
-                  'absolute inset-0 origin-bottom scale-y-0 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.2,1)] group-hover:scale-y-100 motion-reduce:transition-none',
+                  'absolute inset-0 origin-bottom scale-y-0 transition-transform duration-500 ease-[cubic-bezier(0.7,0,0.2,1)] group-hover:scale-y-100 group-data-active:scale-y-100 motion-reduce:transition-none',
                   toneBg[skill.tone],
                 )}
               />
