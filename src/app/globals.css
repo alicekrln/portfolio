@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+@import 'tailwindcss-animated';
+@import 'lenis/dist/lenis.css';
+
+@theme static {
+  --color-background: oklch(0.97 0.01 85);
+  --color-ink: oklch(0.14 0.02 280);
+
+  --color-cream: oklch(0.8918 0.0338 97.73);
+  --color-snow: oklch(0.9581 0 0);
+  --color-orange: oklch(0.7621 0.166 56.56);
+
+  --color-coral: oklch(67.97% 0.20996 32.385);
+  --color-teal: oklch(72.8% 0.112 200);
+  --color-teal-soft: oklch(72.8% 0.112 200 / 0.2);
+  --color-violet: oklch(60.384% 0.30254 311.847);
+  --color-pink: oklch(64.266% 0.24445 352.44);
+  --color-pink-soft: oklch(0.66 0.23 350 / 0.2);
+  --color-lime: oklch(0.8376 0.2189 149.1);
+  --color-lime-soft: oklch(85.9% 0.21 149 / 0.2);
+  --color-sun: oklch(0.913552 0.182356 100.1325);
+  --color-carib: oklch(0.5386 0.2555 267.8);
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-passion: var(--font-passion-one), sans-serif;
+}
+
+@theme {
+  --radius-3xl: 1.75rem;
+  --animate-wiggle-slow: wiggle 4s ease-in-out infinite;
+  --animate-spin-slow: spin 60s linear infinite;
+  --animate-float: float-y 6s ease-in-out infinite;
+  @keyframes float-y {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+}
+
+html {
+  overflow-x: clip;
+  scrollbar-gutter: stable;
+}
+
+@utility section-block {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@utility hairline {
+  border: 1px solid color-mix(in oklab, var(--color-ink) 18%, transparent);
+}
