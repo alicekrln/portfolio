@@ -32,12 +32,18 @@ export function Hero() {
         current !== 'name' ||
         window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-      const nameSplit = new SplitText(nameRef.current, { type: 'words,chars' })
+      const nameSplit = new SplitText(nameRef.current, {
+        type: 'words,chars',
+        mask: 'chars',
+      })
       const taglineSplit = new SplitText(taglineRef.current, {
         type: 'words',
         mask: 'words',
       })
       const chars = nameSplit.chars
+      const charMasks = nameSplit.masks
+      const clipLetters = () =>
+        gsap.set(charMasks, { overflowX: 'clip', overflowY: 'visible' })
       const panels = gsap.utils.toArray<HTMLElement>(
         curtainRef.current!.children,
       )
@@ -55,6 +61,24 @@ export function Hero() {
         },
       })
 
+      const blobPath = blobRef.current!.querySelector('path')!
+      let flooded = false
+      const covers = (x: number, y: number) => {
+        const ctm = blobPath.getScreenCTM()
+        if (!ctm) return false
+        return blobPath.isPointInFill(new DOMPoint(x, y).matrixTransform(ctm.inverse()))
+      }
+      const setFlooded = (value: boolean) => {
+        if (value === flooded) return
+        flooded = value
+        const color = value ? 'var(--color-carib)' : ''
+        document.documentElement.style.backgroundColor = color
+        document.body.style.backgroundColor = color
+      }
+      scrollOut.eventCallback('onUpdate', () => {
+        setFlooded(covers(1, 1) && covers(1, window.innerHeight - 1))
+      })
+
       const buildScrollOut = () => {
         gsap.set(taglineSplit.masks, { overflow: 'visible' })
         const mid = Math.ceil(taglineSplit.words.length / 2)
@@ -62,14 +86,15 @@ export function Hero() {
           .to(taglineSplit.words.slice(0, mid), { xPercent: -250, opacity: 0, stagger: 0.02, ease: 'power2.in' }, 0)
           .to(taglineSplit.words.slice(mid), { xPercent: 250, opacity: 0, stagger: 0.02, ease: 'power2.in' }, 0)
           .to(blobRef.current, { scale: 18, ease: 'none' }, 0.5)
-          .set(document.body, { backgroundColor: 'var(--color-carib)' }, 0.9)
       }
 
       if (skipIntro) {
         gsap.set(curtainRef.current, { display: 'none' })
+        clipLetters()
         buildScrollOut()
         if (current === 'name') setPhase('nav')
       } else {
+        gsap.set(charMasks, { overflow: 'visible' })
         gsap.set(chars, {
           yPercent: -140,
           scale: 0.3,
@@ -99,17 +124,24 @@ export function Hero() {
           .to(chars, { duration: 0, clearProps: 'color', stagger: { each: 0.035, from: 'random' } }, 0.75)
           .to(taglineSplit.words, { yPercent: 0, duration: 0.5, ease: 'power3.out', stagger: 0.03 }, 1.0)
           .call(() => {
+            clipLetters()
             buildScrollOut()
             setPhase('nav')
           }, [], 1.25)
       }
 
-      const cleanups = chars.map((char) => {
-        const onEnter = contextSafe!(() => rollOut(char))
-        char.addEventListener('mouseenter', onEnter)
-        return () => char.removeEventListener('mouseenter', onEnter)
+      const cleanups = chars.map((char, i) => {
+        const mask = charMasks[i]
+        const onEnter = contextSafe!(() => {
+          if (!gsap.isTweening(char)) rollOut(char)
+        })
+        mask.addEventListener('mouseenter', onEnter)
+        return () => mask.removeEventListener('mouseenter', onEnter)
       })
-      return () => cleanups.forEach((fn) => fn())
+      return () => {
+        cleanups.forEach((fn) => fn())
+        setFlooded(false)
+      }
     },
     { scope: sectionRef },
   )
@@ -119,7 +151,7 @@ export function Hero() {
       <section
         ref={sectionRef}
         id='top'
-        className='section-block items-center px-4 text-center text-ink'
+        className='section-block min-h-lvh items-center px-4 text-center text-ink'
       >
         <BlobPath
           tone='carib'
@@ -147,7 +179,7 @@ export function Hero() {
       <div
         ref={curtainRef}
         aria-hidden='true'
-        className='pointer-events-none absolute inset-x-0 top-0 z-30 h-svh overflow-hidden'
+        className='pointer-events-none absolute inset-x-0 top-0 z-30 h-lvh overflow-hidden'
       >
         {CURTAIN.map((bg) => (
           <div key={bg} className={cn('absolute inset-0', bg)} />

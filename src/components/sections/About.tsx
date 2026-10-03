@@ -1,20 +1,11 @@
 'use client'
 
-import { Fragment, useRef, useState, type MouseEvent } from 'react'
-import { AnimatePresence, motion } from 'motion/react'
+import { Fragment, useRef, type MouseEvent } from 'react'
 import { useLenis } from 'lenis/react'
 import { gsap, useGSAP } from '@/lib/gsap'
 import { cn } from '@/lib/utils'
-import { ArrowRightIcon, ArrowUpRightIcon } from '../icons'
-
-const QUIPS = [
-  'Hmm… 2px more padding?',
-  'Should it be rounder?',
-  'What if it was pink?',
-  "Okay, it's perfect now. Probably.",
-  '',
-]
-const BUTTON_COLORS = ['bg-sun', 'bg-violet', 'bg-lime', 'bg-coral', 'bg-pink']
+import { ArrowRightIcon } from '../icons'
+import OverthinkBtn from '../layout/OverthinkBtn'
 
 function words(text: string) {
   const parts = text.split(' ')
@@ -24,50 +15,6 @@ function words(text: string) {
       {i < parts.length - 1 && ' '}
     </Fragment>
   ))
-}
-
-function OverthinkButton() {
-  const [presses, setPresses] = useState(0)
-  const quip = presses > 0 ? QUIPS[(presses - 1) % QUIPS.length] : ''
-
-  return (
-    <span className='relative inline-block'>
-      <motion.button
-        type='button'
-        onClick={() => setPresses((n) => n + 1)}
-        whileHover={{ rotate: -4, scale: 1.05 }}
-        whileTap={{ scale: 0.9, y: 6 }}
-        transition={{ type: 'spring', stiffness: 500, damping: 15 }}
-        className={cn(
-          'cursor-pointer rounded-full px-[0.4em] pb-[0.06em] leading-[1.1] text-ink shadow-[0_0.12em_0_var(--color-ink)] outline-offset-4 focus-visible:outline-3 focus-visible:outline-snow',
-          BUTTON_COLORS[presses % BUTTON_COLORS.length],
-        )}
-      >
-        button
-        <span className='sr-only'> (press it)</span>
-      </motion.button>
-
-      <span aria-hidden='true' className='pointer-events-none absolute bottom-full left-1/2 mb-4 -translate-x-1/2'>
-        <AnimatePresence mode='popLayout'>
-          {quip && (
-            <motion.span
-              key={presses}
-              initial={{ opacity: 0, y: 12, scale: 0.8, rotate: -6 }}
-              animate={{ opacity: 1, y: 0, scale: 1, rotate: -2 }}
-              exit={{ opacity: 0, y: -8, scale: 0.9 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-              className='block whitespace-nowrap rounded-2xl bg-snow px-4 py-2 font-sans text-base font-semibold tracking-normal text-ink shadow-lg'
-            >
-              {quip}
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </span>
-      <span className='sr-only' aria-live='polite'>
-        {quip}
-      </span>
-    </span>
-  )
 }
 
 export function About() {
@@ -138,10 +85,8 @@ export function About() {
               ref={statementRef}
               className='font-display text-[clamp(2.4rem,5vw,4.75rem)] font-bold leading-[1.05] tracking-tight'
             >
-              {words(
-                'Frontend dev student from Stockholm, probably overthinking a',
-              )}{' '}
-              <OverthinkButton /> {words('somewhere.')}
+              {words('Frontend dev student from Stockholm, probably overthinking a')}{' '}
+              <OverthinkBtn /> {words('somewhere.')}
             </p>
 
             <p className='mt-12 max-w-xl text-lg leading-relaxed text-snow/90 sm:text-xl'>

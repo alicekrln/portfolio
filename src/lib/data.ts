@@ -183,7 +183,7 @@ export const PROJECTS: Project[] = [
     title: 'Bajenbanken',
     status: 'In development',
     tag: 'Full-stack mock bank',
-    desc: 'A tongue-in-cheek bank for Hammarby fans, and my playground for learning what happens behind the UI: databases, APIs, Docker and deployment.',
+    desc: 'A satirical bank for Hammarby fans, and my playground for learning what happens behind the UI: databases, APIs, Docker and deployment.',
     stack: [
       'Next.js',
       'TypeScript',
