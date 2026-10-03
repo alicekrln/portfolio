@@ -19,8 +19,6 @@ export function Stack() {
     () => {
       const mm = gsap.matchMedia()
 
-      // Touch devices can't hover, so each row lights up while it passes
-      // through the middle of the screen instead
       mm.add('(hover: none)', () => {
         const rows = gsap.utils.toArray<HTMLElement>('.skill-row')
         rows.forEach((row) => {
