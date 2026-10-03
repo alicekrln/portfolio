@@ -17,7 +17,7 @@ export function Contact() {
   return (
     <section
       id='contact'
-      className='section-block border-t-5 border-orange bg-cream px-4 py-24 text-ink sm:px-8'
+      className='section-block border-y-5 border-orange bg-cream px-4 py-24 text-ink sm:px-8'
     >
       <Flower2
         tone='carib'
