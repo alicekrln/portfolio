@@ -48,7 +48,7 @@ export const toneBg: Record<Tone, string> = {
 export const NAV = [
   { label: 'About', hash: 'about' },
   { label: 'Projects', hash: 'projects' },
-  { label: 'Stack', hash: 'stack' },
+  { label: 'Skills', hash: 'skills' },
   { label: 'Contact', hash: 'contact' },
 ]
 
@@ -69,7 +69,16 @@ export const SKILLS: Skill[] = [
   {
     icon: LayersIcon,
     name: 'Frontend',
-    items: ['React', 'Next.js', 'TanStack', 'Zustand', 'Motion', 'GSAP', 'Zod'],
+    items: [
+      'React',
+      'React Native',
+      'Next.js',
+      'TanStack',
+      'Zustand',
+      'Motion',
+      'GSAP',
+      'Zod',
+    ],
     tone: 'pink',
   },
   {
@@ -77,9 +86,7 @@ export const SKILLS: Skill[] = [
     name: 'Styling & UI',
     items: [
       'Tailwind CSS',
-      'shadcn/ui',
-      'Radix UI',
-      'Responsive design',
+      'Component Architecture',
       'Accessibility (WCAG)',
       'Semantic HTML',
     ],
@@ -94,28 +101,19 @@ export const SKILLS: Skill[] = [
   {
     icon: ServerIcon,
     name: 'Backend & DevOps',
-    items: [
-      'Node.js',
-      'Express',
-      'MySQL',
-      'MAMP',
-      'Docker',
-      'Docker Compose',
-      'GitHub Actions (CI/CD)',
-      'AWS EC2',
-    ],
+    items: ['Node.js', 'Express', 'MySQL', 'Docker', 'AWS EC2'],
     tone: 'teal',
   },
   {
     icon: WrenchIcon,
     name: 'Development Tools',
-    items: ['Git', 'GitHub', 'GitLab', 'npm', 'Vite', 'Vercel', 'Vitest', 'Playwright'],
+    items: ['GitHub', 'npm', 'Vite', 'Vitest', 'Playwright'],
     tone: 'carib',
   },
   {
     icon: PenToolIcon,
     name: 'Design & Workflow',
-    items: ['Figma', 'Wireframing', 'Prototyping', 'UI/UX Design'],
+    items: ['Figma', 'Affinity', 'Prototyping', 'UX Design'],
     tone: 'lime',
   },
 ]
@@ -124,26 +122,21 @@ export const MARQUEE = [
   'React',
   'Next.js',
   'TypeScript',
+  'React Native',
   'Tailwind',
   'Motion',
   'GSAP',
   'Vite',
-  'RadixUI',
   'TanStack',
   'Zustand',
   'Figma',
-  'npm',
-  'shadcn',
-  'Zod',
-  'Vercel',
   'Node.js',
   'Express',
   'MySQL',
   'Docker',
-  'AWS',
 ]
 
-export const CONTACT_EMAIL = 'alice.karlen@hotmail.com'
+export const CONTACT_EMAIL = 'im@alicekarlen.com'
 export const GITHUB_URL = 'https://github.com/alicekrln'
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/alicekarlen/'
 
@@ -181,7 +174,6 @@ export const PROJECTS: Project[] = [
   {
     slug: 'bajenbanken',
     title: 'Bajenbanken',
-    status: 'In development',
     tag: 'Full-stack mock bank',
     desc: 'A satirical bank for Hammarby fans, and my playground for learning what happens behind the UI: databases, APIs, Docker and deployment.',
     stack: [
@@ -205,7 +197,11 @@ export const PROJECTS: Project[] = [
     cover: bajenbankenCover,
     links: [
       { label: 'Live demo', href: 'http://51.21.196.203:3000/', type: 'live' },
-      { label: 'View repo', href: 'https://github.com/alicekrln/bajenbanken-cicd', type: 'repo' },
+      {
+        label: 'View repo',
+        href: 'https://github.com/alicekrln/bajenbanken-cicd',
+        type: 'repo',
+      },
     ],
     architecture: [
       'Next.js frontend',
@@ -258,8 +254,16 @@ export const PROJECTS: Project[] = [
       },
     ],
     media: [
-      { type: 'image', src: matchmatchGrid, alt: 'matchmatch game board in Grid Mode' },
-      { type: 'image', src: matchmatchRepo, alt: 'matchmatch GitHub repository' },
+      {
+        type: 'image',
+        src: matchmatchGrid,
+        alt: 'matchmatch game board in Grid Mode',
+      },
+      {
+        type: 'image',
+        src: matchmatchRepo,
+        alt: 'matchmatch GitHub repository',
+      },
     ],
   },
   {
@@ -294,7 +298,11 @@ export const PROJECTS: Project[] = [
           'https://embed.figma.com/proto/UVVS19GS7fFJaawM5VLkZp/Zero-Bugs-Hero--Copy-?node-id=389-943&p=f&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=389%3A943&embed-host=share&footer=false',
         title: 'Volly interactive Figma prototype',
       },
-      { type: 'image', src: vollyFigma, alt: 'Volly component library in Figma' },
+      {
+        type: 'image',
+        src: vollyFigma,
+        alt: 'Volly component library in Figma',
+      },
       { type: 'image', src: vollyCall, alt: 'Volly video call prototype' },
     ],
   },

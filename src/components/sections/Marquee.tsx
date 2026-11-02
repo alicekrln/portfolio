@@ -23,7 +23,7 @@ export function Marquee() {
       const el = trackRef.current!
       const tween = gsap.to(el, {
         xPercent: -50,
-        duration: 34,
+        duration: 54,
         ease: 'none',
         repeat: -1,
       })
@@ -40,7 +40,10 @@ export function Marquee() {
   )
 
   return (
-    <section aria-label='Tools I work with' className='overflow-hidden bg-ink py-4 sm:py-6'>
+    <section
+      aria-label='Tools I work with'
+      className='overflow-hidden bg-ink py-4 sm:py-6'
+    >
       <div
         ref={trackRef}
         className='flex w-max items-center gap-12 whitespace-nowrap will-change-transform'

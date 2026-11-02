@@ -204,8 +204,10 @@ const FACE_OUTLINE = `
   C 190 81, 198 77, 207 73
 `
 
-const EYE_LEFT = 'M 153 198 C 154 177, 168 169, 184 169 C 201 169, 216 181, 218 199'
-const EYE_RIGHT = 'M 287 198 C 288 177, 302 169, 319 169 C 337 169, 350 181, 352 198'
+const EYE_LEFT =
+  'M 153 198 C 154 177, 168 169, 184 169 C 201 169, 216 181, 218 199'
+const EYE_RIGHT =
+  'M 287 198 C 288 177, 302 169, 319 169 C 337 169, 350 181, 352 198'
 const SMILE =
   'M 122 242 C 128 284, 147 316, 174 337 C 199 357, 227 368, 258 368 C 290 368, 318 357, 339 335 C 362 310, 376 276, 376 229'
 
@@ -217,7 +219,7 @@ export function Smiley({
   const strokeColor = `color-mix(in srgb, ${fillColor} 65%, black)`
   const line = {
     stroke: strokeColor,
-    strokeWidth: 14,
+    strokeWidth: 16,
     strokeLinecap: 'round' as const,
     strokeLinejoin: 'round' as const,
     fill: 'none',
@@ -238,10 +240,7 @@ export function Smiley({
         <>
           <path d='M 158 172 L 210 224 M 210 172 L 158 224' {...line} />
           <path d='M 292 172 L 344 224 M 344 172 L 292 224' {...line} />
-          <path
-            d='M 130 260 C 160 320 210 355 258 355 C 306 355 356 320 386 260'
-            {...line}
-          />
+          <path d={SMILE} {...line} />
         </>
       ) : (
         <>
@@ -254,9 +253,8 @@ export function Smiley({
           <path d={SMILE} {...line} />
           {variant === 'tongue' && (
             <path
-              d='M 220 330 C 224 366, 250 388, 262 388 C 278 388, 296 368, 296 340'
-              fill={strokeColor}
-              opacity={0.9}
+              d='M 174 345.5 C 155.5 368.5, 172 402.5, 190 409 C 210 422.5, 243.5 403.5, 250 374.5'
+              {...line}
             />
           )}
         </>

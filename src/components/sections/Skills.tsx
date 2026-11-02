@@ -12,7 +12,7 @@ const hoverText: Partial<Record<Tone, string>> = {
   violet: 'hover:text-snow data-active:text-snow',
 }
 
-export function Stack() {
+export function Skills() {
   const listRef = useRef<HTMLOListElement>(null)
 
   useGSAP(
@@ -26,7 +26,8 @@ export function Stack() {
             trigger: row,
             start: 'top 55%',
             end: 'bottom 55%',
-            onToggle: (self) => row.toggleAttribute('data-active', self.isActive),
+            onToggle: (self) =>
+              row.toggleAttribute('data-active', self.isActive),
           })
         })
         return () => rows.forEach((row) => row.removeAttribute('data-active'))
@@ -35,7 +36,10 @@ export function Stack() {
       mm.add('(prefers-reduced-motion: no-preference)', () => {
         gsap.utils.toArray<HTMLElement>('.skill-row').forEach((row, i) => {
           const title = row.querySelector('h3')!
-          const split = new SplitText(title, { type: 'words,chars', mask: 'chars' })
+          const split = new SplitText(title, {
+            type: 'words,chars',
+            mask: 'chars',
+          })
 
           gsap.fromTo(
             title,
@@ -43,7 +47,12 @@ export function Stack() {
             {
               xPercent: 0,
               ease: 'none',
-              scrollTrigger: { trigger: row, start: 'top bottom', end: 'top 45%', scrub: 0.6 },
+              scrollTrigger: {
+                trigger: row,
+                start: 'top bottom',
+                end: 'top 45%',
+                scrub: 0.6,
+              },
             },
           )
 
@@ -55,10 +64,21 @@ export function Stack() {
                 toggleActions: 'play none none reverse',
               },
             })
-            .from(split.chars, { yPercent: 110, duration: 0.6, ease: 'power4.out', stagger: 0.015 })
+            .from(split.chars, {
+              yPercent: 110,
+              duration: 0.6,
+              ease: 'power4.out',
+              stagger: 0.015,
+            })
             .from(
               row.querySelectorAll('.skill-tag'),
-              { scale: 0.6, autoAlpha: 0, duration: 0.4, ease: 'back.out(2.5)', stagger: 0.04 },
+              {
+                scale: 0.6,
+                autoAlpha: 0,
+                duration: 0.4,
+                ease: 'back.out(2.5)',
+                stagger: 0.04,
+              },
               '-=0.35',
             )
         })
@@ -68,10 +88,17 @@ export function Stack() {
   )
 
   return (
-    <section id='stack' className='bg-cream px-4 py-24 text-ink sm:px-8 sm:py-32'>
+    <section
+      id='skills'
+      className='bg-cream px-4 py-24 text-ink sm:px-8 sm:py-32'
+    >
       <div className='mx-auto w-full max-w-7xl'>
         <Reveal selector='.reveal' className='text-orange'>
-          <SectionHeading label='Skills' title='Still leveling up' className='reveal mb-14' />
+          <SectionHeading
+            label='Skills'
+            title='Still leveling up'
+            className='reveal mb-14'
+          />
         </Reveal>
 
         <ol ref={listRef} className='border-t-2 border-ink'>
@@ -94,15 +121,23 @@ export function Stack() {
               <div className='relative grid items-center gap-x-8 gap-y-5 py-8 sm:py-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]'>
                 <div className='flex items-start gap-4 sm:gap-6'>
                   <span className='mt-1.5 flex flex-col items-center gap-2 font-mono text-xs tracking-widest sm:mt-3 sm:text-sm'>
-                    <span className='opacity-60'>{String(i + 1).padStart(2, '0')}</span>
-                    <skill.icon className='h-5 w-5 sm:h-6 sm:w-6' strokeWidth={1.75} />
+                    <span className='opacity-60'>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <skill.icon
+                      className='h-5 w-5 sm:h-6 sm:w-6'
+                      strokeWidth={1.75}
+                    />
                   </span>
                   <h3 className='font-display text-[clamp(2rem,4.6vw,4.5rem)] font-bold uppercase leading-[0.9] tracking-tight'>
                     {skill.name}
                   </h3>
                 </div>
 
-                <ul aria-label={`${skill.name} tools`} className='flex flex-wrap gap-2 sm:gap-2.5 lg:justify-end'>
+                <ul
+                  aria-label={`${skill.name} tools`}
+                  className='flex flex-wrap gap-2 sm:gap-2.5 lg:justify-end'
+                >
                   {skill.items.map((item) => (
                     <li
                       key={item}

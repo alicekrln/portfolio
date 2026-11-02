@@ -1,10 +1,7 @@
 'use client'
 
-import { Fragment, useRef, type MouseEvent } from 'react'
-import { useLenis } from 'lenis/react'
+import { Fragment, useRef } from 'react'
 import { gsap, useGSAP } from '@/lib/gsap'
-import { cn } from '@/lib/utils'
-import { ArrowRightIcon } from '../icons'
 import OverthinkBtn from '../layout/OverthinkBtn'
 
 function words(text: string) {
@@ -20,7 +17,6 @@ function words(text: string) {
 export function About() {
   const sectionRef = useRef<HTMLElement>(null)
   const statementRef = useRef<HTMLParagraphElement>(null)
-  const lenis = useLenis()
 
   useGSAP(
     () => {
@@ -60,13 +56,6 @@ export function About() {
     { scope: sectionRef },
   )
 
-  function goToContact(e: MouseEvent<HTMLAnchorElement>) {
-    if (!lenis) return
-    e.preventDefault()
-    lenis.scrollTo('#contact')
-    history.replaceState(null, '', '#contact')
-  }
-
   return (
     <section
       ref={sectionRef}
@@ -74,10 +63,10 @@ export function About() {
       className='section-block bg-carib px-4 py-24 text-snow sm:px-8 sm:py-32'
     >
       <div className='mx-auto w-full max-w-7xl'>
-          <div className='flex flex-col mb-4 items-baseline gap-3 font-mono text-xs uppercase tracking-[0.35em]'>
-            <span>About</span>
-            <span className='h-px w-30 bg-current' />
-          </div>
+        <div className='flex flex-col mb-4 items-baseline gap-3 font-mono text-xs uppercase tracking-[0.35em]'>
+          <span>About</span>
+          <span className='h-px w-30 bg-current' />
+        </div>
 
         <div className='flex flex-col gap-14 lg:flex-row lg:items-stretch lg:justify-between lg:gap-16'>
           <div className='lg:basis-3/5'>
@@ -85,14 +74,16 @@ export function About() {
               ref={statementRef}
               className='font-display text-[clamp(2.4rem,5vw,4.75rem)] font-bold leading-[1.05] tracking-tight'
             >
-              {words('Frontend dev student from Stockholm, probably overthinking a')}{' '}
+              {words(
+                'Frontend dev student from Stockholm, probably overthinking a',
+              )}{' '}
               <OverthinkBtn /> {words('somewhere.')}
             </p>
 
             <p className='mt-12 max-w-xl text-lg leading-relaxed text-snow/90 sm:text-xl'>
               Second year at Chas Academy, focused on clean, accessible,
-              user-centered interfaces. Currently on the hunt for an internship 
-              where I can learn from a real team, on real products, with real users.
+              user-centered interfaces. Currently interning at Amanda AI until
+              April 2027.
             </p>
           </div>
 
@@ -105,30 +96,17 @@ export function About() {
               </li>
               <li className='fact rotate-2'>
                 <span className='inline-block rounded-2xl bg-sun px-5 py-3 font-display text-lg font-bold text-ink shadow-[0_6px_0_var(--color-ink)] sm:text-xl'>
-                  Chas Academy · 2025-27
+                  Chas Academy · 25 - 27
                 </span>
               </li>
               <li className='fact -rotate-2'>
-                <a
-                  href='#contact'
-                  onClick={goToContact}
-                  className={cn(
-                    'group inline-flex items-center gap-3 rounded-2xl bg-lime px-5 py-3 font-display text-lg font-bold text-ink shadow-[0_6px_0_var(--color-ink)] transition-transform sm:text-xl',
-                    'hover:-translate-y-1 focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-snow',
-                  )}
-                >
+                <span className='group inline-flex items-center gap-3 rounded-2xl bg-lime px-5 py-3 font-display text-lg font-bold text-ink shadow-[0_6px_0_var(--color-ink)] sm:text-xl'>
                   <span aria-hidden='true' className='relative flex h-3 w-3'>
                     <span className='absolute inset-0 rounded-full bg-ink motion-safe:animate-ping' />
                     <span className='relative h-3 w-3 rounded-full bg-ink' />
                   </span>
-                  Open for internship · Nov '26 - Apr '27
-                  <span
-                    aria-hidden='true'
-                    className='transition-transform group-hover:translate-x-1'
-                  >
-                    <ArrowRightIcon className='h-4 w-4 stroke-3 transition-transform group-hover:rotate-90' />
-                  </span>
-                </a>
+                  Currently: internship mode
+                </span>
               </li>
             </ul>
           </div>

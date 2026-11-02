@@ -3,7 +3,7 @@ import { Contact } from '@/components/sections/Contact'
 import { Hero } from '@/components/sections/Hero'
 import { Marquee } from '@/components/sections/Marquee'
 import { Projects } from '@/components/sections/Projects'
-import { Stack } from '@/components/sections/Stack'
+import { Skills } from '@/components/sections/Skills'
 
 export default function HomePage() {
   return (
@@ -12,7 +12,7 @@ export default function HomePage() {
       <About />
       <Marquee />
       <Projects />
-      <Stack />
+      <Skills />
       <Contact />
     </>
   )
