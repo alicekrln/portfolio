@@ -38,6 +38,8 @@ export function ProjectRow({
         },
       )
 
+      // Parallax on the cover (skipped while a project has no screenshot)
+      if (!project.cover) return
       gsap.fromTo(
         'img',
         { scale: 1.18, y: -24 },
@@ -54,7 +56,7 @@ export function ProjectRow({
         },
       )
     },
-    { scope: rowRef },
+    { scope: rowRef, dependencies: [project.cover] },
   )
 
   return (
@@ -72,13 +74,24 @@ export function ProjectRow({
           ref={imageWrapRef}
           className='reveal hairline w-full overflow-hidden rounded-3xl lg:w-1/2'
         >
-          <Image
-            src={project.cover}
-            alt={`${project.title} preview`}
-            placeholder='blur'
-            sizes='(min-width: 1024px) 50vw, 100vw'
-            className='h-full w-full object-cover'
-          />
+          {project.cover ? (
+            <Image
+              src={project.cover}
+              alt={`${project.title} preview`}
+              placeholder='blur'
+              sizes='(min-width: 1024px) 50vw, 100vw'
+              className='h-full w-full object-cover'
+            />
+          ) : (
+            <div className='flex aspect-video w-full flex-col items-center justify-center gap-2 bg-background/40 p-8 text-center'>
+              <span className='font-display text-4xl font-bold tracking-tight sm:text-6xl'>
+                {project.title}
+              </span>
+              <span className='font-mono text-xs uppercase tracking-[0.2em] opacity-70'>
+                Screenshots coming soon
+              </span>
+            </div>
+          )}
         </div>
 
         <div className='reveal w-full lg:w-1/2'>

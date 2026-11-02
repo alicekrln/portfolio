@@ -1,5 +1,4 @@
 import type { StaticImageData } from 'next/image'
-
 import matchmatchCover from '@/assets/projects/matchmatch/cover.jpg'
 import matchmatchGrid from '@/assets/projects/matchmatch/grid.jpg'
 import matchmatchRepo from '@/assets/projects/matchmatch/github.jpg'
@@ -7,6 +6,8 @@ import vollyCover from '@/assets/projects/volly/cover.jpg'
 import vollyFigma from '@/assets/projects/volly/figma.jpg'
 import vollyCall from '@/assets/projects/volly/videocall.jpg'
 import bajenbankenCover from '@/assets/projects/bajenbanken/cover.png'
+import karappenCover from '@/assets/projects/karappen/cover.jpg'
+import karappenApp from '@/assets/projects/karappen/loggedin.jpg'
 import {
   CodeIcon,
   GlobeIcon,
@@ -172,16 +173,65 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    slug: 'karappen',
+    title: 'Kårappen',
+    tag: 'Student union app',
+    desc: 'A mobile app for a student union, where members find events and sign up, and the union creates and manages them. Built in two weeks as a team of two.',
+    stack: [
+      'React Native',
+      'Expo',
+      'Expo Router',
+      'TypeScript',
+      'Node.js',
+      'Express',
+      'PostgreSQL',
+      'JWT',
+      'bcrypt',
+      'Docker',
+      'GitHub Actions',
+      'AWS EC2',
+      'nginx',
+    ],
+    tone: 'pink',
+    tagTone: 'pink-soft',
+    year: '2026',
+    role: 'Full-stack developer (team of two)',
+    overview:
+      "Kårappen is the student union's member app. Members browse upcoming events, sign up or cancel, see their own registrations and edit their profile. Admins can also create, edit and delete events, and see attendee information.\n\nI built authentication: registration and login with bcrypt and JWT, the login and register screens, and storing the token in SecureStore on the phone. I also built the roles and permission middleware that separates members from admins, plus a seed script for the admin account. Then I built the profile, from the API with validation and tests to the profile screen with edit mode and profile picture upload.\n\nThe backend is covered by 62 tests that run against a real PostgreSQL database in GitHub Actions. They check that members can't touch admin routes or other people's data, and that invalid input is rejected. The API is only deployed to AWS EC2 when every test passes, and runs behind nginx with HTTPS from Let's Encryt.",
+    cover: karappenCover,
+      links: [
+      {
+        label: 'View repo',
+        href: 'https://github.com/alicekrln/karappen',
+        type: 'repo',
+      },
+    ],
+    architecture: [
+      'Expo app',
+      'Express API',
+      'PostgreSQL',
+      'Docker Compose',
+      'nginx + HTTPS',
+      'AWS EC2',
+    ],
+    media: [
+      { type: 'image', src: karappenCover, alt: 'Kårappen login and home page'},
+      { type: 'image', src: karappenApp, alt: 'Kårappen logged in'},
+    ],
+  },
+  {
     slug: 'bajenbanken',
     title: 'Bajenbanken',
     tag: 'Full-stack mock bank',
-    desc: 'A satirical bank for Hammarby fans, and my playground for learning what happens behind the UI: databases, APIs, Docker and deployment.',
+    desc: 'A satirical bank for Hammarby fans, and the project where I learned what happens behind the UI: databases, APIs, authentication, testing and deployment.',
     stack: [
       'Next.js',
       'TypeScript',
       'Tailwind CSS',
       'Express',
       'MySQL',
+      'JWT',
+      'bcrypt',
       'Docker',
       'GitHub Actions',
       'AWS EC2',
@@ -193,7 +243,7 @@ export const PROJECTS: Project[] = [
     year: '2026',
     role: 'Full-stack developer (learning project)',
     overview:
-      'Bajenbanken is a playful mock bank in green and white, where you can open an account, log in and check your balance. The frontend is a Next.js app, but the project exists so I can learn the parts I had never touched before.\n\nAn Express API handles users, sessions and accounts, and stores everything in a MySQL database. I started out running MySQL locally with MAMP, then moved the whole stack into Docker containers with Docker Compose. Every push to main runs a GitHub Actions pipeline that lints and builds the frontend, installs the backend, and then deploys the new version to an AWS EC2 instance over SSH.',
+      'Bajenbanken is a playful mock bank in green and white. You open an account, log in, deposit money with a note, and follow your transaction history. Your balance is also shown as how many beers it buys. The frontend is a Next.js app, but the project exists so I could learn the parts I had never touched before.\n\nAn Express API stores users, accounts and transactions in a MySQL database. I started out running MySQL locally with MAMP, then moved the whole stack into Docker containers with Docker Compose. Passwords are hashed with bcrypt, and logging in returns a short-lived JWT (15 minutes) that is sent as a Bearer token and only kept in memory, never in localStorage.\n\nEvery pull request and push to main runs a GitHub Actions pipeline: lint, build, Vitest unit tests and Playwright end-to-end tests that check the whole login flow, including that missing or tampered tokens are rejected. Only when everything passes is the new version deployed to an AWS EC2 instance over SSH.',
     cover: bajenbankenCover,
     links: [
       { label: 'Live demo', href: 'http://51.21.196.203:3000/', type: 'live' },
@@ -208,12 +258,8 @@ export const PROJECTS: Project[] = [
       'Express API',
       'MySQL database',
       'Docker Compose',
+      'GitHub Actions',
       'AWS EC2',
-    ],
-    nextUp: [
-      'Unit tests with Vitest',
-      'End-to-end tests with Playwright',
-      'Running the tests in the CI pipeline before every deploy',
     ],
     media: [
       { type: 'image', src: bajenbankenCover, alt: 'Bajenbanken start page' },
