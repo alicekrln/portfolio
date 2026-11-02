@@ -38,7 +38,6 @@ export function ProjectRow({
         },
       )
 
-      // Parallax on the cover (skipped while a project has no screenshot)
       if (!project.cover) return
       gsap.fromTo(
         'img',

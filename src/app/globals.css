@@ -8,7 +8,7 @@
 
   --color-cream: oklch(0.8918 0.0338 97.73);
   --color-snow: oklch(0.9581 0 0);
-  --color-orange: oklch(0.7621 0.166 56.56);
+  --color-accent: oklch(0.2723 0.1614 275.45);
 
   --color-coral: oklch(67.97% 0.20996 32.385);
   --color-teal: oklch(72.8% 0.112 200);
@@ -18,8 +18,10 @@
   --color-pink-soft: oklch(0.66 0.23 350 / 0.2);
   --color-lime: oklch(0.8424 0.2141 151.66);
   --color-lime-soft: oklch(85.9% 0.21 149 / 0.2);
-  --color-sun: oklch(0.913552 0.182356 100.1325);
+  --color-sun: oklch(0.9059 0.1758 98.18);
   --color-carib: oklch(0.5386 0.2555 267.8);
+  --color-babypink: oklch(0.7175 0.1897 347.73);
+  --color-babyblue: oklch(0.7479 0.1371 247.18);
 }
 
 @theme inline {
@@ -27,6 +29,7 @@
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
   --font-passion: var(--font-passion-one), sans-serif;
+  --font-humane: var(--font-humane-face), sans-serif;
 }
 
 @theme {

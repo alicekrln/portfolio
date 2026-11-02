@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import { Inter, JetBrains_Mono, Passion_One, Space_Grotesk } from 'next/font/google'
+import localFont from 'next/font/local'
 import Navbar from '@/components/layout/Navbar'
 import { SmoothScroll } from '@/components/layout/SmoothScroll'
 import './globals.css'
@@ -20,6 +21,15 @@ const passionOne = Passion_One({
   variable: '--font-passion-one',
 })
 
+const humane = localFont({
+  src: [
+    { path: '../fonts/Humane/Humane-Bold.woff2', weight: '700', style: 'normal' },
+    { path: '../fonts/Humane/Humane-Black.woff2', weight: '900', style: 'normal' },
+  ],
+  variable: '--font-humane-face',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   title: {
     default: 'Alice Karlén - Frontend Developer',
@@ -33,7 +43,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html
       lang='en'
-      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${passionOne.variable}`}
+      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${passionOne.variable} ${humane.variable}`}
     >
       <body className='bg-cream font-sans text-ink antialiased'>
         <SmoothScroll>

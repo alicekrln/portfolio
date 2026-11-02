@@ -31,7 +31,7 @@ export default function Navbar() {
           if (useIntroStore.getState().phase !== 'done') return
           gsap.to(chars, {
             y: active ? -6 : 0,
-            color: active ? 'var(--color-orange)' : 'inherit',
+            color: active ? 'var(--color-babypink)' : 'inherit',
             stagger: 0.02,
             duration: 0.3,
             ease: 'power2.out',

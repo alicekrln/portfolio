@@ -93,7 +93,7 @@ export function Skills() {
       className='bg-cream px-4 py-24 text-ink sm:px-8 sm:py-32'
     >
       <div className='mx-auto w-full max-w-7xl'>
-        <Reveal selector='.reveal' className='text-orange'>
+        <Reveal selector='.reveal' className='text-accent'>
           <SectionHeading
             label='Skills'
             title='Still leveling up'

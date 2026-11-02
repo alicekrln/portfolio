@@ -162,7 +162,7 @@ export function Hero() {
         <h1
           ref={nameRef}
           className={cn(
-            'invisible font-passion text-[clamp(3rem,12vw,9rem)] font-black uppercase leading-[0.9] text-orange',
+            'invisible font-humane text-[clamp(6rem,18vw,30rem)] font-black uppercase leading-[0.9] text-accent',
             phase === 'name' && 'pointer-events-none',
           )}
         >

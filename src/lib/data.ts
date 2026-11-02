@@ -30,7 +30,9 @@ export type Tone =
   | 'lime-soft'
   | 'sun'
   | 'carib'
-  | 'orange'
+  | 'accent'
+  | 'babyblue'
+  | 'babypink'
 
 export const toneBg: Record<Tone, string> = {
   coral: 'bg-coral',
@@ -43,7 +45,9 @@ export const toneBg: Record<Tone, string> = {
   'lime-soft': 'bg-lime-soft',
   sun: 'bg-sun',
   carib: 'bg-carib',
-  orange: 'bg-orange',
+  accent: 'bg-accent',
+  babyblue: 'bg-babyblue',
+  babypink: 'bg-babypink',
 }
 
 export const NAV = [
@@ -192,14 +196,14 @@ export const PROJECTS: Project[] = [
       'AWS EC2',
       'nginx',
     ],
-    tone: 'pink',
+    tone: 'babypink',
     tagTone: 'pink-soft',
     year: '2026',
     role: 'Full-stack developer (team of two)',
     overview:
       "Kårappen is the student union's member app. Members browse upcoming events, sign up or cancel, see their own registrations and edit their profile. Admins can also create, edit and delete events, and see attendee information.\n\nI built authentication: registration and login with bcrypt and JWT, the login and register screens, and storing the token in SecureStore on the phone. I also built the roles and permission middleware that separates members from admins, plus a seed script for the admin account. Then I built the profile, from the API with validation and tests to the profile screen with edit mode and profile picture upload.\n\nThe backend is covered by 62 tests that run against a real PostgreSQL database in GitHub Actions. They check that members can't touch admin routes or other people's data, and that invalid input is rejected. The API is only deployed to AWS EC2 when every test passes, and runs behind nginx with HTTPS from Let's Encryt.",
     cover: karappenCover,
-      links: [
+    links: [
       {
         label: 'View repo',
         href: 'https://github.com/alicekrln/karappen',
@@ -215,8 +219,12 @@ export const PROJECTS: Project[] = [
       'AWS EC2',
     ],
     media: [
-      { type: 'image', src: karappenCover, alt: 'Kårappen login and home page'},
-      { type: 'image', src: karappenApp, alt: 'Kårappen logged in'},
+      {
+        type: 'image',
+        src: karappenCover,
+        alt: 'Kårappen login and home page',
+      },
+      { type: 'image', src: karappenApp, alt: 'Kårappen logged in' },
     ],
   },
   {
@@ -238,7 +246,7 @@ export const PROJECTS: Project[] = [
       'Vitest',
       'Playwright',
     ],
-    tone: 'lime',
+    tone: 'babyblue',
     tagTone: 'lime-soft',
     year: '2026',
     role: 'Full-stack developer (learning project)',
@@ -280,7 +288,7 @@ export const PROJECTS: Project[] = [
       'Figma',
       'shadcn/ui',
     ],
-    tone: 'pink',
+    tone: 'babypink',
     tagTone: 'pink-soft',
     year: '2026',
     role: 'Frontend Developer',
@@ -318,7 +326,7 @@ export const PROJECTS: Project[] = [
     tag: 'Volunteer platform',
     desc: 'A platform connecting people seeking support with volunteers through accessible and community-driven interactions.',
     stack: ['Figma', 'React', 'TypeScript', 'Vite', 'Tailwind CSS'],
-    tone: 'lime',
+    tone: 'babyblue',
     tagTone: 'lime-soft',
     year: '2026',
     role: 'UX Designer & Frontend Developer',
